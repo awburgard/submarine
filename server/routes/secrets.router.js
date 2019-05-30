@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 router.get('/', rejectUnauthenticated, (req, res) => {
     const queryString = `SELECT * FROM "secret" WHERE "secrecy_level" <= $1;`;
-    if (req.user.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         pool.query(queryString, [req.user.clearance_level])
             .then(results => res.send(results.rows))
             .catch(error => {
