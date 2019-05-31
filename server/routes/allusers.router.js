@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const queryString = `SELECT * FROM "user" ASC;`
+    const queryString = `SELECT * FROM "user";`
     pool.query(queryString)
         .then((results) => {
             res.send(results.rows)
